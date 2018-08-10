@@ -40,7 +40,6 @@ const Player = function(x,y,spd) {
 }
 
 Player.prototype.update = function() {
-    // Needed but not currently used
     this.charSwap();
 }
 
