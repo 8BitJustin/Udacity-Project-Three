@@ -41,18 +41,25 @@ const Player = function(x,y,spd) {
 
 Player.prototype.update = function() {
     // Needed but not currently used
-    this.char();
+    this.charSwap();
 }
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-Player.prototype.char = function() {
-    if (wins <= 2) {
+// Swaps sprite char depending on wins
+Player.prototype.charSwap = function() {
+    if (wins <= 4) {
         this.sprite = 'images/char-boy.png';
-    } else if (wins > 2){
+    } else if (wins > 4 && wins <= 9){
         this.sprite = 'images/char-cat-girl.png';
+    } else if (wins > 9 && wins <= 14){
+        this.sprite = 'images/char-horn-girl.png';
+    } else if (wins > 14 && wins < 19){
+        this.sprite = 'images/char-pink-girl.png';
+    } else if (wins > 19){
+        this.sprite = 'images/char-princess-girl.png';
     }
 }
 
@@ -98,6 +105,8 @@ const collision = function(nme) {
         player.y < nme.y + 60 && player.y + 60 > nme.y) {
         player.x = 202.5;
         player.y = 383;
+        wins = 0;
+        console.log(`You were hit, wins reset to ${wins}.`);
     }
 }
 
