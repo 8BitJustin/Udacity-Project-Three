@@ -73,9 +73,13 @@ Player.prototype.handleInput = function(keyPress) {
     if (player.y <= 0) {
         player.x = 202.5;
         player.y = 383;
-        alert('You won!');
+        wins++;
+        if (wins === 1) {
+            console.log(`You have won ${wins} time!`)
+        } else {
+            console.log(`You have won ${wins} times!`);
+        }
     }
-
 }
 
 // Collision between player and enemy check (ran within Enemy.prototype.update)
@@ -87,6 +91,8 @@ const collision = function(nme) {
     }
 }
 
+// Keeps track of wins
+let wins = 0;
 // Places all enemy objects in an array
 const allEnemies = [];
 // Places the player object in a variable called player
