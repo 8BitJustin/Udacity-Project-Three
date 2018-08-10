@@ -5,24 +5,16 @@ const Enemy = function(x,y,spd) {
     this.x = x;
     this.y = y;
     this.spd = spd;
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+Enemy.prototype.update = function() {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += this.speed * dt;
-
-    // Loops enemies from right to left
-    if (this.x >= 505) {
-        this.x = 0;
-    }
-};
+}
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -40,7 +32,7 @@ const Player = function(x,y,spd) {
 }
 
 Player.prototype.update = function() {
-
+    // Needed but not currently used
 }
 
 Player.prototype.render = function() {
@@ -49,13 +41,13 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(keyPress) {
     if (keyPress == 'left') {
-        player.x += -101;
+        player.x += -101.25;
     }
     if (keyPress == 'up') {
         player.y -= 83;
     }
     if (keyPress == 'right') {
-        player.x += 101;
+        player.x += 101.25;
     }
     if (keyPress == 'down') {
         player.y -= -83;
@@ -65,25 +57,41 @@ Player.prototype.handleInput = function(keyPress) {
     if (player.y > 383 ) {
         player.y = 383;
     }
-    if (player.x > 402.5) {
-        player.x = 402.5;
+    if (player.x > 404) {
+        player.x = 404;
     }
-    if (player.x < 2.5) {
-        player.x = 2.5;
+    if (player.x < 0) {
+        player.x = 0;
     }
     if (player.y <= 0) {
         player.x = 202.5;
         player.y = 383;
         alert('You won!');
     }
+
+    // Collision function
+    collision();
 }
+
+// Function to detect collisions
+const collision = function() {
+    if (player.x === enemy.x && player.y === enemy.y) {
+        player.x = 202.5;
+        player.y = 383;
+    }
+}
+
+// Array with enemy positions
+const enemyPosition = [217, 134, 51];
+// Pulls one number by random to place as Y coordinate for enemy variable
+const randomItem = enemyPosition[Math.floor(Math.random()*enemyPosition.length)];
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 const allEnemies = [];
 const player = new Player(202.5, 383, 50);
-const enemy = new Enemy(0, Math.random() * 184 + 50, Math.random() * 256);
+const enemy = new Enemy(0, randomItem, 50);
 
 allEnemies.push(enemy);
 
@@ -96,7 +104,5 @@ document.addEventListener('keyup', function(e) {
         68: 'right',
         83: 'down'
     };
-
     player.handleInput(allowedKeys[e.keyCode]);
-
 });
