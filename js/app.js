@@ -11,13 +11,15 @@ const Enemy = function(x,y,spd) {
 // Updates the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // Sets initial speed at start
-    this.x += this.spd * dt;
-
     // Gives random speed when x is greater than canvas width (restarts)
     if (this.x > 550) {
+        // Puts enemy at start
         this.x = -101;
+        // Gives random speed
         this.spd = 150 + Math.floor(Math.random() * 350);
+    } else {
+        // Initial speed
+        this.x += this.spd * dt;
     }
 
     // Runs collision function, using 'this' as the argument
@@ -35,15 +37,23 @@ const Player = function(x,y,spd) {
     this.x = x;
     this.y = y;
     this.spd = spd;
-    this.sprite = 'images/char-boy.png';
 }
 
 Player.prototype.update = function() {
     // Needed but not currently used
+    this.char();
 }
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
+
+Player.prototype.char = function() {
+    if (wins <= 2) {
+        this.sprite = 'images/char-boy.png';
+    } else if (wins > 2){
+        this.sprite = 'images/char-cat-girl.png';
+    }
 }
 
 Player.prototype.handleInput = function(keyPress) {
