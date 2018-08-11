@@ -40,17 +40,27 @@ Enemy.prototype.update = function(dt) {
         this.x += this.spd * dt;
     }
 
-    // Runs collision function, using 'this' as the argument
-    collision(this);
+    // Runs collision function
+    this.collision();
 }
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+}
 
-// Player class, with required update(), render() and
-// a handleInput() methods.
+// Collision between player and enemy check
+Enemy.prototype.collision =  function() {
+    if (player.x < this.x + 80 && player.x + 80 > this.x &&
+        player.y < this.y + 60 && player.y + 60 > this.y) {
+        player.x = 202.5;
+        player.y = 383;
+        points = 0;
+        console.log(`You were hit, points reset to ${points}.`);
+    }
+}
+
+// Player class, with required update(), render() and handleInput() methods.
 const Player = function(x,y,spd) {
     this.x = x;
     this.y = y;
@@ -122,17 +132,6 @@ Player.prototype.handleInput = function(keyPress) {
         } else {
             console.log(`You have ${points} points!`);
         }
-    }
-}
-
-// Collision between player and enemy check (ran within Enemy.prototype.update)
-const collision = function(nme) {
-    if (player.x < nme.x + 80 && player.x + 80 > nme.x &&
-        player.y < nme.y + 60 && player.y + 60 > nme.y) {
-        player.x = 202.5;
-        player.y = 383;
-        points = 0;
-        console.log(`You were hit, points reset to ${points}.`);
     }
 }
 
