@@ -98,16 +98,16 @@ Player.prototype.charSwap = function() {
 
 // Button inputs to play the game
 Player.prototype.handleInput = function(keyPress) {
-    if (keyPress == 'left' || keyPress == 'arrowLeft') {
+    if (keyPress === 'left' || keyPress === 'arrowLeft') {
         player.x += -101.25;
     }
-    if (keyPress == 'up' || keyPress == 'arrowUp') {
+    if (keyPress === 'up' || keyPress === 'arrowUp') {
         player.y -= 83;
     }
-    if (keyPress == 'right' || keyPress == 'arrowRight') {
+    if (keyPress === 'right' || keyPress === 'arrowRight') {
         player.x += 101.25;
     }
-    if (keyPress == 'down' || keyPress == 'arrowDown') {
+    if (keyPress === 'down' || keyPress === 'arrowDown') {
         player.y -= -83;
     }
 
