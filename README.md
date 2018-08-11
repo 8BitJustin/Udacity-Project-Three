@@ -13,4 +13,4 @@ The point of the game is to get to the river without being touched.
 Starting at the bottom, use the arrow or ASDW keys to get to the river. Be careful, as the beetles will come at you at random speeds.
 Every time you get to the river, you gain a point, and every five points, you change to a different character. But get touched by a beetle, and you lose all points.
 
-Can you unlock the last character at 20 points?
+Can you unlock the Princess Girl at 20 points?
