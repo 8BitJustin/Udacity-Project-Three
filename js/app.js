@@ -1,3 +1,6 @@
+// Intro
+console.log('test');
+
 // Enemy class
 const Enemy = function(x,y,spd) {
     // Variables applied to each of our instances go here,
