@@ -1,5 +1,4 @@
 ## frontend-nanodegree-arcade-game
-===============================
 
 Good day (or evening)! Welcome to my version of the Udacity Front End Developer Nanodegree Arcade Game.
 Below are both instructions on how to run the game and how to play the game.
