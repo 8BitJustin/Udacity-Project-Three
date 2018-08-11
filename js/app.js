@@ -47,17 +47,17 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-// Swaps sprite char depending on wins
+// Swaps sprite char depending on points
 Player.prototype.charSwap = function() {
-    if (wins <= 4) {
+    if (points <= 4) {
         this.sprite = 'images/char-boy.png';
-    } else if (wins > 4 && wins <= 9){
+    } else if (points > 4 && points <= 9){
         this.sprite = 'images/char-cat-girl.png';
-    } else if (wins > 9 && wins <= 14){
+    } else if (points > 9 && points <= 14){
         this.sprite = 'images/char-horn-girl.png';
-    } else if (wins > 14 && wins < 19){
+    } else if (points > 14 && points < 19){
         this.sprite = 'images/char-pink-girl.png';
-    } else if (wins > 19){
+    } else if (points > 19){
         this.sprite = 'images/char-princess-girl.png';
     }
 }
@@ -92,11 +92,11 @@ Player.prototype.handleInput = function(keyPress) {
         player.y = 383;
 
         // Adds to win variable everytime the river is reached
-        wins++;
-        if (wins === 1) {
-            console.log(`You have won ${wins} time!`)
+        points++;
+        if (points === 1) {
+            console.log(`You have ${points} point!`)
         } else {
-            console.log(`You have won ${wins} times!`);
+            console.log(`You have ${points} points!`);
         }
     }
 }
@@ -107,13 +107,13 @@ const collision = function(nme) {
         player.y < nme.y + 60 && player.y + 60 > nme.y) {
         player.x = 202.5;
         player.y = 383;
-        wins = 0;
-        console.log(`You were hit, wins reset to ${wins}.`);
+        points = 0;
+        console.log(`You were hit, points reset to ${points}.`);
     }
 }
 
-// Keeps track of wins
-let wins = 0;
+// Keeps track of points
+let points = 0;
 // Places all enemy objects in an array
 const allEnemies = [];
 // Places the player object in a variable called player
