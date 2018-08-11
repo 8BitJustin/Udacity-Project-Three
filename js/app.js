@@ -1,14 +1,17 @@
+'use strict'
+
 // Intro
 console.log(`%c
 -------------------------------------------------
              Udacity Arcade Game
 -------------------------------------------------
 
-      Use the arrow or asdw keys to move.
+Use the arrow or asdw keys to move.
 Get one point for each time you get to the river.
-     Unlock a new character every 5 points.
-        Lose all points if you get hit.
-             GLHF getting to 20!
+Unlock a new character every 5 points.
+Lose all points if you get hit.
+
+GLHF getting to 20!
 `, "font-family:monospace");
 
 
@@ -64,16 +67,22 @@ Player.prototype.render = function() {
 
 // Swaps sprite char depending on points
 Player.prototype.charSwap = function() {
-    if (points <= 4) {
-        this.sprite = 'images/char-boy.png';
-    } else if (points > 4 && points <= 9){
-        this.sprite = 'images/char-cat-girl.png';
-    } else if (points > 9 && points <= 14){
-        this.sprite = 'images/char-horn-girl.png';
-    } else if (points > 14 && points < 19){
-        this.sprite = 'images/char-pink-girl.png';
-    } else if (points > 19){
-        this.sprite = 'images/char-princess-girl.png';
+    switch(true) {
+        case points > 19:
+            this.sprite = 'images/char-princess-girl.png';
+            break;
+        case points > 14:
+            this.sprite = 'images/char-pink-girl.png';
+            break;
+        case points > 9:
+            this.sprite = 'images/char-horn-girl.png';
+            break;
+        case points > 4:
+            this.sprite = 'images/char-cat-girl.png';
+            break;
+        default:
+            this.sprite = 'images/char-boy.png';
+            break;
     }
 }
 
@@ -137,7 +146,7 @@ const player = new Player(202.5, 383, 50);
 const enemyPosition = [217, 134, 51];
 // Loops through allEnemies array, puts three enemies on screen at different Y positions
 enemyPosition.forEach(function(posY) {
-    enemy = new Enemy(0, posY, 250);
+    const enemy = new Enemy(0, posY, 250);
     allEnemies.push(enemy);
 });
 
