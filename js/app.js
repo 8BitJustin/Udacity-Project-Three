@@ -1,5 +1,17 @@
 // Intro
-console.log('test');
+console.log(`%c
+-------------------------------------------------
+             Udacity Arcade Game
+-------------------------------------------------
+
+      Use the arrow or asdw keys to move.
+Get one point for each time you get to the river.
+     Unlock a new character every 5 points.
+        Lose all points if you get hit.
+             GLHF getting to 20!
+`, "font-family:monospace");
+
+
 
 // Enemy class
 const Enemy = function(x,y,spd) {
