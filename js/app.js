@@ -62,17 +62,18 @@ Player.prototype.charSwap = function() {
     }
 }
 
+// Button inputs to play the game
 Player.prototype.handleInput = function(keyPress) {
-    if (keyPress == 'left') {
+    if (keyPress == 'left' || keyPress == 'arrowLeft') {
         player.x += -101.25;
     }
-    if (keyPress == 'up') {
+    if (keyPress == 'up' || keyPress == 'arrowUp') {
         player.y -= 83;
     }
-    if (keyPress == 'right') {
+    if (keyPress == 'right' || keyPress == 'arrowRight') {
         player.x += 101.25;
     }
-    if (keyPress == 'down') {
+    if (keyPress == 'down' || keyPress == 'arrowDown') {
         player.y -= -83;
     }
 
@@ -89,6 +90,8 @@ Player.prototype.handleInput = function(keyPress) {
     if (player.y <= 0) {
         player.x = 202.5;
         player.y = 383;
+
+        // Adds to win variable everytime the river is reached
         wins++;
         if (wins === 1) {
             console.log(`You have won ${wins} time!`)
@@ -123,13 +126,17 @@ enemyPosition.forEach(function(posY) {
     allEnemies.push(enemy);
 });
 
-// This listens for key presses and sends the keys the Player.handleInput() method
+// This listens for key presses and sends the keys the Player.handleInput() method. For both arrows and asdw
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         65: 'left',
+        37: 'arrowLeft',
         87: 'up',
+        38: 'arrowUp',
         68: 'right',
-        83: 'down'
+        39: 'arrowRight',
+        83: 'down',
+        40: 'arrowDown'
     };
     player.handleInput(allowedKeys[e.keyCode]);
 });
